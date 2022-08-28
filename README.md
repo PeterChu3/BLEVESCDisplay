@@ -27,7 +27,7 @@ http://vedder.se/2015/10/communicating-with-the-vesc-using-uart/
 The VESC communicates over UART using packets even over BLE. The structure is in the following format for a general packet.
 
 - 1 start byte with the value of 2 (short packets <= 255 bytes) or 3 (long packets > 255 bytes)
-- 1-2 bytes specifying the packet payload length
+- 1-2 bytes specifying the packet PAYLOAD length
 - ? bytes payload of the packet
 - Two byte CRC checksum
 - 1 stop byte value of 3
@@ -36,14 +36,18 @@ The VESC communicates over UART using packets even over BLE. The structure is in
 
 This app will request two values from COMM_GET_VALUES_SELECTIVE. This will minimize the size of the responce from the VESC because we only need the ERPM and battery voltage values.
 
+A bitmask is used to select the values we have. A 32byte bitmasked is send over UART. The 8th & 9th digit of the bitmask should request ERPM and Voltage.
+
+The payload size is 1 byte (to request selective values) + 4 bytes (the bitmask). Total payload: 5 bytes
+
 ERPM - 32bit uint value
 Battery Voltage - 16 bit unsighed int divided by 10.
 
 The packet sent will have the following values
 
 - 0x02 - start byte (short packet value)
-- 0x0x - packet PAYLOAD length(TBD)
-- 0xXX - packet PAYLOAD bit 1
+- 0x05 - packet PAYLOAD length(TBD)
+- 0x33 - packet PAYLOAD bit 1 (requests) selective data
 - 0xXX - packet PAYLOAD checksum 1
 - 0xXX - packet PAYLOAD checksum 2
 - 0x03 - Stop byte
