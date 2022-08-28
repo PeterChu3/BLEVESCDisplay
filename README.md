@@ -11,10 +11,39 @@ I have a friend, Osa All, who rides a trampa with a burner android phone to serv
 The commands for VESC data
 https://github.com/vedderb/bldc/blob/805006f03e486506145e6faa1f334d47fe9875d8/comm/commands.c
 
+Helpful VESC packet functions
+https://github.com/vedderb/bldc/blob/805006f03e486506145e6faa1f334d47fe9875d8/comm/packet.c
+
 BLE/Gatt overview
 https://learn.adafruit.com/introducing-the-adafruit-bluefruit-le-uart-friend/gatt-service-details
 
 Forum post for VESC packets
 http://vedder.se/2015/10/communicating-with-the-vesc-using-uart/
 
-## Telemtry Packets & VESC information
+### Telemtry Packets & VESC information
+
+##### General VESC UART packet Data
+
+The VESC communicates over UART using packets even over BLE. The structure is in the following format for a general packet.
+
+- 1 start byte with the value of 2 (short packets <= 255 bytes) or 3 (long packets > 255 bytes)
+- 1-2 bytes specifying the packet payload length
+- ? bytes payload of the packet
+- Two byte CRC checksum
+- 1 stop byte value of 3
+
+##### VESC Dashboard Request Data packet.
+
+This app will request two values from COMM_GET_VALUES_SELECTIVE. This will minimize the size of the responce from the VESC because we only need the ERPM and battery voltage values.
+
+ERPM - 32bit uint value
+Battery Voltage - 16 bit unsighed int divided by 10.
+
+The packet sent will have the following values
+
+- 0x02 - start byte (short packet value)
+- 0x0x - packet PAYLOAD length(TBD)
+- 0xXX - packet PAYLOAD bit 1
+- 0xXX - packet PAYLOAD checksum 1
+- 0xXX - packet PAYLOAD checksum 2
+- 0x03 - Stop byte
