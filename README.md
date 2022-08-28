@@ -47,7 +47,26 @@ The packet sent will have the following values
 
 - 0x02 - start byte (short packet value)
 - 0x05 - packet PAYLOAD length(TBD)
-- 0x33 - packet PAYLOAD bit 1 (requests) selective data
-- 0xXX - packet PAYLOAD checksum 1
-- 0xXX - packet PAYLOAD checksum 2
+- 0x32 - packet PAYLOAD bit 1 (requests) selective data
+- 0xXX - packet PAYLOAD MASK 1
+- 0xXX - packet PAYLOAD MASK 2
+- 0xXX - packet PAYLOAD MASK 3
+- 0xXX - packet PAYLOAD MASK 4
+- 0x03 - Stop byte
+
+The packet reply will have the following values
+
+- 0x02 - start byte (short packet value)
+- 0x0? - packet PAYLOAD length(TBD)
+- 0x32 - packet PAYLOAD bit 1 (Repies) selective data
+- 0xXX - packet PAYLOAD MASK 1
+- 0xXX - packet PAYLOAD MASK 2
+- 0xXX - packet PAYLOAD MASK 3
+- 0xXX - packet PAYLOAD MASK 4
+- 0xXX - packet PAYLOAD ERPM 1
+- 0xXX - packet PAYLOAD ERPM 2
+- 0xXX - packet PAYLOAD ERPM 3
+- 0xXX - packet PAYLOAD ERPM 4
+- 0xXX - packet PAYLOAD Bvolt 1
+- 0xXX - packet PAYLOAD Bvolt 2
 - 0x03 - Stop byte
