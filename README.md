@@ -1,11 +1,10 @@
 # VESC Dashboard
 
-## Background & Explanation 
+## Background & Explanation
 
-![Mini Bike View](https://github.com/chuy4ever/BLEVESCDisplay/blob/main/OsaTrampa.HEIC?raw=true)
+![Mini Bike View](https://github.com/PeterChu3/BLEVESCDisplay/blob/master/Docs/Images/OsaTrampa.jpg?raw=true)
 
 I have a friend, Osa All, who rides a trampa with a burner android phone to serve as a dashboard for his ride. He uses the stock VESC tool app for live speed and battery data. In my opinion the stock VESC-Tool telemtry page is rather cluttered for riding. According to Osa, speed and battery info at a glance is all he really needs and this app provides that in a easier to read way.
-
 
 #### Important links where I got information.
 
