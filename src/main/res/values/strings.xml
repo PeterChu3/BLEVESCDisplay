@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">BLEAPP</string>
+    <string name="title_connect">Connect</string>
+    <string name="title_config">Config</string>
+    <string name="title_telemetry">Telemetry</string>
+</resources>
